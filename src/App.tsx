@@ -22,7 +22,17 @@ const createUserFormSchema = z.object({
     .string()
     .nonempty("O email é obrigatório")
     .email("Formato de email inválido")
-    .toLowerCase(),
+    .toLowerCase()
+    // .refine((email) => {
+    //   return email.endsWith("@rocketseat.com.br");
+    // }, "O email precisa ser da rocketseat")
+    // .refine((email) => {
+    //   return email.endsWith("@gmail.com");
+    // }, "O email precisa ser do google")
+    .refine((email) => {
+      return email.endsWith("@hotmail.com");
+    }, "O email precisa ser do hotmail"),
+
   password: z.string().min(6, "A senha precisa de no mínimo 6 caracteres"),
 });
 
